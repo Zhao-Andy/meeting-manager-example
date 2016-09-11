@@ -1,7 +1,12 @@
 <h1><a href="/meetings">All meetings</a></h1>
 <div ng-app="app">
   <div ng-controller="meetingsCtrl" ng-init="setup()">
-    <div ng-repeat="meeting in meetings">
+    <input ng-model="filterName" list="meetings">descending by name</input>
+    <datalist id="meetings">
+      <option ng-repeat="meeting in meetings">{{ meeting.name }}</option>
+    </datalist>
+    <button ng-click="sortByDate()">Sort by Date</button>
+    <div ng-repeat="meeting in meetings | filter: {name: filterName} | orderBy:start_time:isReverse">
       <h3><a href="/meetings/{{meeting.id}}">{{ meeting.name }}</a></h3>
       <p>
         Tags:
