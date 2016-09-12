@@ -16,5 +16,17 @@
       <p>Start time: {{ meeting.start_time | date : 'short' }}</p>
       <p>End time: {{ meeting.end_time | date : 'short' }}</p>
     </div>
+    <br>
+    Add a new meeting:
+    <br>
+    Name: <input type="text" ng-model="meeting.name" /><br />
+    Address: <input type="text" ng-model="meeting.address" /><br />
+    Start Time: <input type="datetime-local" name="start_time" id="start_time" value="2016-09-12T22:31" ng-model="meeting.start_time"/><br />
+    End Time: <input type="datetime-local" name="end_time" id="end_time" value="2016-09-12T23:32" ng-model="meeting.end_time"/><br />
+    Notes: <input type="text" ng-model="meeting.notes" /><br />
+    <!-- Tags: <select name="tag_ids[]" id="tag_ids" multiple="multiple">
+      <option ng-repeat="tag in tags"> {{ tag.name }}</option>
+    </select> -->
+    <button ng-click="addMeeting(meeting)">Add Meeting</button>
   </div>
 </div>

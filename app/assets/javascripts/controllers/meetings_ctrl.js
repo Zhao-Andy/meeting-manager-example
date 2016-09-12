@@ -11,6 +11,14 @@
 
     $scope.sortByDate = function() {
       $scope.isReverse = !$scope.isReverse;
-      };
+    };
+
+    $scope.addMeeting = function(meeting) {
+      $http.post('/api/v1/meetings.json', meeting).success(function(response) {
+        console.log(response);
+      });
+      $scope.meetings.push(meeting);
+      $scope.meeting = {};
+    };
     });
 }());

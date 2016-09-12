@@ -4,29 +4,6 @@ class MeetingsController < ApplicationController
     render 'new'
   end
 
-  def create
-    @meeting = Meeting.new(
-      name: params[:name],
-      address: params[:address],
-      start_time: params[:start_time],
-      end_time: params[:end_time],
-      notes: params[:notes]
-    )
-    if @meeting.save
-      params[:tag_ids].each do |tag_id|
-        MeetingTag.create(
-          meeting_id: @meeting.id,
-          tag_id: tag_id
-        )
-      end
-      flash[:success] = "Great!"
-      redirect_to '/meetings'
-    else
-      flash[:errors] = "Error"
-      render 'new'
-    end
-  end
-
   def index
     if params[:tag]
       @meetings = Tag.find_by(name: params[:tag]).meetings
